@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-gray-900 bg-gray-100 min-h-screen leading-tight;
+  }
+}
+
+@layer utilities {
+  .spinner-none {
+    -moz-appearance: textfield;
+  }
+  /* .spinner-none::-webkit-inner-spin-button,
+  .spinner-none::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  } */
+}

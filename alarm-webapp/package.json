@@ -1,0 +1,23 @@
+{
+  "name": "alarm-webapp",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@bevry/jsonfile": "^1.1.0",
+    "@vue-hero-icons/outline": "^1.6.3",
+    "express": "^4.17.1",
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vue/compiler-sfc": "^3.0.5",
+    "autoprefixer": "^10.2.4",
+    "postcss": "^8.2.5",
+    "tailwindcss": "^2.0.2",
+    "vite": "^2.0.0-beta.65"
+  }
+}
