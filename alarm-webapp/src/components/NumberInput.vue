@@ -3,6 +3,7 @@
     type="number"
     class="px-2 py-0.5 rounded-md spinner-none"
     v-model="value"
+    @focus="$event.target.select()"
   />
 </template>
 
