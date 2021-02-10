@@ -8,8 +8,7 @@
 
 <script setup>
 import { computed } from "vue";
-// :value="modelValue"
-// @input="$emit('update:modelValue', parseInt($event.target.value))"
+
 const props = defineProps({ modelValue: Number, max: Number });
 const emit = defineEmit(["update:modelValue"]);
 

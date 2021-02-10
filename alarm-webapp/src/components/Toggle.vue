@@ -12,8 +12,6 @@
 </template>
 
 <script setup>
-// import { ref } from "vue";
-// let toggleActive = ref(false);
 const props = defineProps({ modelValue: Boolean });
 const emit = defineEmit(["update:modelValue"]);
 </script>
