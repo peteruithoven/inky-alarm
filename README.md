@@ -9,7 +9,7 @@ DIY Pi Zero alarm with Inky pHat
 * * * * * python3 /home/pi/inky-alarm/alarm/alarm.py
 ```
 
-## webserver service
+### Webserver
 - Install a recent Node.js for armv6l
 - Run server on port 80 by adding the following lines before the exit line in `/etc/rc.local`:
   ```
