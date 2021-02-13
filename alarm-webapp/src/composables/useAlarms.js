@@ -6,7 +6,6 @@ export default function useMessages() {
   let alarms = ref([]);
 
   getAlarms().then((newAlarms) => {
-    console.log("newAlarms: ", newAlarms);
     alarms.value = newAlarms;
     watch(
       alarms.value,

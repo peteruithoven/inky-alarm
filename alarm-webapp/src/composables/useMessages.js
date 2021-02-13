@@ -19,7 +19,6 @@ export default function useMessages() {
   }
 
   function hideMessage(id) {
-    console.log("id: ", JSON.stringify(id, null, "  "));
     messages.value = messages.value.filter((m) => m.id !== id);
   }
 
