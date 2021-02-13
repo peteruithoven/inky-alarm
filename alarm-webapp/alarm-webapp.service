@@ -1,0 +1,19 @@
+# /etc/systemd/system/alarm-webapp.service
+
+[Unit]
+Description=Inky alarm webapp server
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/inky-alarm/alarm-webapp
+LimitNOFILE=8192
+PIDFile=/var/run/alarm-webapp/alarm-webapp.pid
+Environment="NODE_ENV=production"
+ExecStart=/usr/local/bin/node server/server.js
+Restart=on-failure
+RestartSec=5s
+TimeoutStartSec="1 min"
+
+[Install]
+WantedBy=multi-user.target
