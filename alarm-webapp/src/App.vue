@@ -1,5 +1,5 @@
 <template>
-  <div class="w-min mx-auto py-5 space-y-5">
+  <div class="w-min mx-auto py-5 space-y-5 relative min-h-screen">
     <Card
       v-for="(alarm, index) of alarms"
       :key="index"
@@ -21,49 +21,38 @@
     >
       Add alarm
     </button>
+    <transition-group
+      tag="div"
+      class="sticky bottom-0 pb-3 space-y-3 mx-auto"
+      leave-active-class="transition-opacity ease-out duration-200"
+      leave-to-class="opacity-0"
+      enter-from-class="opacity-0 translate-y-4"
+      enter-active-class="transition ease-out duration-200 translate"
+    >
+      <Message
+        v-for="message of messages"
+        :key="message.id"
+        v-bind="message"
+        @close="hideMessage($event)"
+      />
+    </transition-group>
   </div>
 </template>
 
 <script setup>
 import { ref, watchEffect, watch, computed } from "vue";
 import { ArchiveIcon } from "@vue-hero-icons/outline";
-import throttle from "lodash/throttle";
 import Card from "./components/Card.vue";
 import Time from "./components/Time.vue";
 import Toggle from "./components/Toggle.vue";
 import DaysSelection from "./components/DaysSelection.vue";
+import Message from "./components/Message.vue";
 import iconComptbl from "./utils/iconComptbl.js";
-import { getAlarms, setAlarms } from "./api.js";
+import useMessages from "./composables/useMessages.js";
+import useAlarms from "./composables/useAlarms.js";
 
 iconComptbl(ArchiveIcon);
 
-let alarms = ref([]);
-
-// alarms.value = await getAlarms();
-getAlarms().then((newAlarms) => {
-  alarms.value = newAlarms;
-  watch(
-    alarms.value,
-    // TODO debug
-    throttle((value) => {
-      setAlarms(alarms.value);
-    }),
-    2000
-  );
-});
-
-function addAlarm() {
-  alarms.value.push({
-    time: {
-      hours: 0,
-      minutes: 0
-    },
-    enabled: true,
-    days: []
-  });
-}
-
-function removeAlarm(index) {
-  alarms.value.splice(index, 1);
-}
+const { messages, showMessage, hideMessage } = useMessages();
+const { alarms, addAlarm, removeAlarm } = useAlarms();
 </script>
