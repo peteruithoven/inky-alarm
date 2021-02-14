@@ -4,11 +4,13 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "icons": "real-favicon generate faviconDescription.json faviconData.json icons && real-favicon inject faviconData.json icons index.html"
   },
   "dependencies": {
     "@bevry/jsonfile": "^1.1.0",
     "@vue-hero-icons/outline": "^1.6.3",
+    "cli-real-favicon": "0.0.8",
     "express": "^4.17.1",
     "vue": "^3.0.5"
   },
