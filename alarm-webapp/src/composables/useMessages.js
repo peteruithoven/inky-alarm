@@ -4,17 +4,19 @@ export default function useMessages() {
   let messageNextId = 0;
   const messages = ref([]);
 
-  function showMessage(message) {
+  function showMessage(type, text, timeout) {
     const id = messageNextId;
     messages.value.push({
       id,
-      ...message
+      type,
+      text,
+      timeout
     });
     messageNextId++;
-    if (message.timeout) {
+    if (timeout) {
       setTimeout(() => {
         hideMessage(id);
-      }, message.timeout);
+      }, timeout);
     }
   }
 
@@ -25,6 +27,7 @@ export default function useMessages() {
   return {
     messages,
     showMessage,
+    showError: (...args) => showMessage("error", ...args),
     hideMessage
   };
 }

@@ -24,11 +24,11 @@
     <transition-group
       tag="div"
       class="sticky bottom-0 space-y-3 mx-auto"
+      :class="{ 'pb-3': messages.length > 0 }"
       leave-active-class="transition-opacity ease-out duration-200"
       leave-to-class="opacity-0"
       enter-from-class="opacity-0 translate-y-4"
       enter-active-class="transition ease-out duration-200 translate"
-      :class="{ 'pb-3': messages.length > 0 }"
     >
       <Message
         v-for="message of messages"
@@ -54,6 +54,6 @@ import useAlarms from "./composables/useAlarms.js";
 
 iconComptbl(ArchiveIcon);
 
-const { messages, showMessage, hideMessage } = useMessages();
-const { alarms, addAlarm, removeAlarm } = useAlarms();
+const { messages, showMessage, showError, hideMessage } = useMessages();
+const { alarms, addAlarm, removeAlarm } = useAlarms(showError);
 </script>

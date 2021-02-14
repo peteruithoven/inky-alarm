@@ -1,16 +1,21 @@
-export async function getAlarms() {
-  const response = await fetch("/api/alarms");
-  const json = await response.json();
-  return json;
+async function req(url, options) {
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return await response.json();
 }
-export async function setAlarms(alarms) {
-  const response = await fetch("/api/alarms", {
+
+export function getAlarms() {
+  return req("/api/alarms");
+}
+
+export function setAlarms(alarms) {
+  return req("/api/alarms", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(alarms)
   });
-  const json = await response.json();
-  return json;
 }
