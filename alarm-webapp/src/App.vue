@@ -1,5 +1,5 @@
 <template>
-  <div class="w-min mx-auto py-5 space-y-5 relative min-h-screen">
+  <div class="w-min mx-auto pt-5 space-y-5 relative min-h-screen">
     <Card
       v-for="(alarm, index) of alarms"
       :key="index"
@@ -23,11 +23,12 @@
     </button>
     <transition-group
       tag="div"
-      class="sticky bottom-0 pb-3 space-y-3 mx-auto"
+      class="sticky bottom-0 space-y-3 mx-auto"
       leave-active-class="transition-opacity ease-out duration-200"
       leave-to-class="opacity-0"
       enter-from-class="opacity-0 translate-y-4"
       enter-active-class="transition ease-out duration-200 translate"
+      :class="{ 'pb-3': messages.length > 0 }"
     >
       <Message
         v-for="message of messages"
