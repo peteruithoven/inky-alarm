@@ -41,7 +41,6 @@
 </template>
 
 <script setup>
-import { ref, watchEffect, watch, computed } from "vue";
 import { ArchiveIcon } from "@vue-hero-icons/outline";
 import Card from "./components/Card.vue";
 import Time from "./components/Time.vue";
