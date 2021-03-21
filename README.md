@@ -7,6 +7,7 @@ DIY Pi Zero alarm with Inky pHat
 ```
 */30 * * * * python3 /home/pi/inky-alarm/display/display.py
 * * * * * python3 /home/pi/inky-alarm/alarm/alarm.py
+* * * * * python3 /home/pi/inky-alarm/time/time.py
 ```
 
 ### Webserver
