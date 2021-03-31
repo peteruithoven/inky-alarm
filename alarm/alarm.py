@@ -8,9 +8,9 @@ from pathlib import Path
 import json
 
 duration = 60 # seconds
-vibrate_duration = 0.1
+vibrate_duration = 0.2
 wait_duration = 1.5
-shaker_pin = 5
+shaker_pin = 26
 button_pin = 6
 
 path = str(Path.home()) + "/alarms.json"
