@@ -1,0 +1,16 @@
+# /etc/systemd/system/time.service
+
+[Unit]
+Description=Inky alarm time
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/inky-alarm/time
+LimitNOFILE=8192
+PIDFile=/var/run/time/time.pid
+ExecStart=python3 time.py
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+# /etc/systemd/system/display.service
+
+[Unit]
+Description=Inky alarm display
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/inky-alarm/display
+LimitNOFILE=8192
+PIDFile=/var/run/display/display.pid
+ExecStart=python3 display.py
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
