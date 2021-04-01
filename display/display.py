@@ -49,7 +49,7 @@ img = Image.new("P", inky_display.resolution)
 draw = ImageDraw.Draw(img)
 
 # Fonts
-bottom_bar_font = ImageFont.truetype(FredokaOne, 16)
+bottom_bar_font = ImageFont.truetype(FredokaOne, 21)
 temp_font = ImageFont.truetype(FredokaOne, 50)
 minmax_font = ImageFont.truetype(FredokaOne, 20)
 
@@ -72,24 +72,31 @@ draw.text((137, 5), u"{}°".format(weather.temp), inky_display.BLACK, font=temp_
 draw.text((137, 55), u"{}° | {}°".format(weather.temp_min, weather.temp_max), inky_display.BLACK, font=minmax_font)
 
 # Bottom bar
-top_padding = 4
-padding = 8
+padding_x = 16
+padding_y = 4
+
 datetime = time.strftime("%H:%M  %d %b")
 datetime_w, datetime_h = bottom_bar_font.getsize(datetime)
-datetime_x = padding
-datetime_y = int(inky_display.height - datetime_h - padding)
+datetime_x = padding_x
+datetime_y = int(inky_display.height - datetime_h - padding_y)
+
+weekday, hour, minute = get_next_alarm()
+weekday_name = WEEKDAY_NAMES[weekday]
+alarm = "{} {}:{}".format(weekday_name, hour, minute)
 
 alarm_w, alarm_h = bottom_bar_font.getsize(alarm)
-alarm_x = inky_display.width - alarm_w
-alarm_y = int(inky_display.height - alarm_h - padding)
+alarm_x = inky_display.width - alarm_w - padding_x
+alarm_y = datetime_y
 
 # Yellow bar
-for y in range(int(datetime_y-top_padding), inky_display.height):
+for y in range(int(datetime_y-padding_y), inky_display.height):
     for x in range(0, inky_display.width):
         img.putpixel((x, y), inky_display.YELLOW)
 
+draw.text((datetime_x+2, datetime_y+1), datetime, inky_display.WHITE, font=bottom_bar_font)
 draw.text((datetime_x, datetime_y), datetime, inky_display.BLACK, font=bottom_bar_font)
 
+draw.text((alarm_x+2, alarm_y+1), alarm, inky_display.WHITE, font=bottom_bar_font)
 draw.text((alarm_x, alarm_y), alarm, inky_display.BLACK, font=bottom_bar_font)
 
 img = img.rotate(180)
