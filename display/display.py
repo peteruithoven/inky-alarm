@@ -15,44 +15,14 @@ from PIL import Image, ImageDraw, ImageFont
 import icon_map
 from mask import create_mask
 from weather import get_weather
-
-alarm_path = str(Path.home()) + "/alarm.txt"
-alarm = open(alarm_path,'r').read()
-print("alarm: " + alarm)
+from get_next_alarm import get_next_alarm
 
 PATH = path.dirname(__file__) # Current path
 API_KEY = open(path.join(PATH,"key.txt"),'r').read().strip()
 UNITS = "metric"
 LAT = 52.377956
 LON = 4.897070
-
-# path = str(Path.home()) + "/alarms.json"
-# now = datetime.now()
-# next_alarm_time = "";
-# with open(path, "r") as json_file:
-#     alarms = json.load(json_file)
-#     enabled_alarms = filter(lambda alarm: alarm['enabled'], alarms)
-#     enabled_alarms
-
-# sorted_alarms = sorted(random, key=take_second)
-
-#     for alarm in enabled_alarms:
-#         print('enabled: ' + str(alarm['enabled']))
-#         hours = alarm['time']["hours"]
-#         minutes = alarm['time']["minutes"]
-#         print('time: ' + str(hours) + ':' + str(minutes))
-#         # print('days: ' + ",".join(alarm['days']))
-#         print('')
-#         # if (alarm['enabled'] and
-#         #     hours >= now.hour and
-#         #     minutes >= now.minute):
-#             #now.weekday() in alarm['days']
-#         if (alarm['enabled']):
-#             print("is next alarm")
-#             next_alarm_time = '{}:{:0>2}'.format(hours, minutes)
-#             print("next_alarm_time: " + next_alarm_time);
-
-# enabled_alarms = filter(lambda alarm: alarm['enabled'])
+WEEKDAY_NAMES = ("Mo","Tu","We","Th","Fr","Sa","Su")
 
 def convert(img):  # 8 bit indexed color image (white, black, red)
     pal_img = Image.new("P", (1, 1))
