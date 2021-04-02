@@ -82,7 +82,7 @@ datetime_y = int(inky_display.height - datetime_h - padding_y)
 
 weekday, hour, minute = get_next_alarm()
 weekday_name = WEEKDAY_NAMES[weekday]
-alarm = "{} {}:{}".format(weekday_name, hour, minute)
+alarm = f"{weekday_name} {hour:02}:{minute:02}"
 
 alarm_w, alarm_h = bottom_bar_font.getsize(alarm)
 alarm_x = inky_display.width - alarm_w - padding_x
