@@ -75,14 +75,16 @@ draw.text((137, 55), u"{}° | {}°".format(weather.temp_min, weather.temp_max), 
 padding_x = 16
 padding_y = 4
 
-datetime = time.strftime("%H:%M  %d %b")
-datetime_w, datetime_h = bottom_bar_font.getsize(datetime)
+now = datetime.now()
+now_weekday_name = WEEKDAY_NAMES[now.weekday()]
+datetime_str = f"{now_weekday_name} {now.strftime('%-d %b')}"
+datetime_w, datetime_h = bottom_bar_font.getsize(datetime_str)
 datetime_x = padding_x
 datetime_y = int(inky_display.height - datetime_h - padding_y)
 
 alarm_datetime = get_next_alarm()
-weekday_name = WEEKDAY_NAMES[alarm_datetime.weekday()]
-alarm = f"{weekday_name} {alarm_datetime.strftime('%H:%M')}"
+alarm_weekday_name = WEEKDAY_NAMES[alarm_datetime.weekday()]
+alarm = f"{alarm_weekday_name} {alarm_datetime.strftime('%H:%M')}"
 
 alarm_w, alarm_h = bottom_bar_font.getsize(alarm)
 alarm_x = inky_display.width - alarm_w - padding_x
@@ -93,8 +95,8 @@ for y in range(int(datetime_y-padding_y), inky_display.height):
     for x in range(0, inky_display.width):
         img.putpixel((x, y), inky_display.YELLOW)
 
-draw.text((datetime_x+2, datetime_y+1), datetime, inky_display.WHITE, font=bottom_bar_font)
-draw.text((datetime_x, datetime_y), datetime, inky_display.BLACK, font=bottom_bar_font)
+draw.text((datetime_x+2, datetime_y+1), datetime_str, inky_display.WHITE, font=bottom_bar_font)
+draw.text((datetime_x, datetime_y), datetime_str, inky_display.BLACK, font=bottom_bar_font)
 
 draw.text((alarm_x+2, alarm_y+1), alarm, inky_display.WHITE, font=bottom_bar_font)
 draw.text((alarm_x, alarm_y), alarm, inky_display.BLACK, font=bottom_bar_font)
