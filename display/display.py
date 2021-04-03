@@ -80,9 +80,9 @@ datetime_w, datetime_h = bottom_bar_font.getsize(datetime)
 datetime_x = padding_x
 datetime_y = int(inky_display.height - datetime_h - padding_y)
 
-weekday, hour, minute = get_next_alarm()
-weekday_name = WEEKDAY_NAMES[weekday]
-alarm = f"{weekday_name} {hour:02}:{minute:02}"
+alarm_datetime = get_next_alarm()
+weekday_name = WEEKDAY_NAMES[alarm_datetime.weekday()]
+alarm = f"{weekday_name} {alarm_datetime.strftime('%H:%M')}"
 
 alarm_w, alarm_h = bottom_bar_font.getsize(alarm)
 alarm_x = inky_display.width - alarm_w - padding_x

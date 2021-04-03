@@ -1,15 +1,18 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from os import path
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 import json
 
+def get_next_weekday_time(weekday, hour, minute):
+    d = datetime.now()
+    d = d.replace(hour=hour, minute=minute, second=0, microsecond=0)
+    days_ahead = (weekday - d.weekday()) % 7
+    return d + timedelta(days_ahead)
+
 def get_next_alarm():
-  path = str(Path.home()) + "/alarms.json"
   now = datetime.now()
-  # print("now:", now.strftime("%m/%d/%Y, %H:%M:%S"))
+  path = str(Path.home()) + "/alarms.json"
+  # print("now:", now.strftime("%a %d %b %Y, %H:%M"))
   with open(path, "r") as json_file:
     alarms = json.load(json_file)
     enabled_alarms = filter(lambda alarm: alarm['enabled'], alarms)
@@ -21,21 +24,16 @@ def get_next_alarm():
       weekdays = alarm['days']
       # print('- ' + str(hours) + ":" + str(minutes) + ' ' + ','.join(map(str,weekdays)))
 
-      for weekday_delta in range(7):
-        weekday = (now.weekday()+weekday_delta)%7
-        if(weekday in weekdays and
-          ((now.hour < hours and
-          now.minute < minutes) or weekday_delta > 0)):
-            sortable = weekday_delta*100 + hours*10, minutes
-            next_alarms.append([sortable, weekday, hours, minutes])
-    next_alarms.sort(key=lambda elem: elem[0])
+      for weekday in weekdays:
+        alarm_datetime = get_next_weekday_time(weekday, hours, minutes)
+        if alarm_datetime > now:
+          next_alarms.append(alarm_datetime)
+    next_alarms.sort()
+
     # print("alarms:")
-    # for alarm in next_alarms:
-    #   weekday_name = weekday_names[alarm[1]]
-    #   print("    {} {}:{}".format(weekday_name, alarm[2], alarm[3]))
-    next_alarm = next_alarms[0]
-    sortable, weekday, hour, minute = next_alarm
-    return weekday, hour, minute
+    # for alarm_datetime in next_alarms:
+    #   print("- " + alarm_datetime.strftime("%a %d %b %Y, %H:%M"))
+    return next_alarms[0]
 
 
 
