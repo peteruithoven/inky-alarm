@@ -17,7 +17,7 @@ let alarms = [
       minutes: 0
     },
     enabled: true,
-    days: ["mo", "tu", "we"]
+    days: [0, 1, 2]
   }
 ];
 
