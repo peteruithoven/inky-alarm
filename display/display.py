@@ -1,14 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import glob
-import time
-import copy
-import pytz
-from os import path
+from os import path, environ
 from datetime import datetime
-from sys import exit
-from pathlib import Path
+from dotenv import load_dotenv
 from font_fredoka_one import FredokaOne
 from inky.auto import auto
 from PIL import Image, ImageDraw, ImageFont
@@ -17,8 +12,12 @@ from mask import create_mask
 from weather import get_weather
 from get_next_alarm import get_next_alarm
 
+load_dotenv()  # take environment variables from .env.
+
+API_KEY = environ["API_KEY"]
+print(API_KEY)
+
 PATH = path.dirname(__file__) # Current path
-API_KEY = open(path.join(PATH,"key.txt"),'r').read().strip()
 UNITS = "metric"
 LAT = 52.377956
 LON = 4.897070

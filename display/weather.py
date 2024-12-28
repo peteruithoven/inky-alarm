@@ -11,7 +11,7 @@ class Weather:
         self.night = night
 
 def get_weather(lat, lon, units, api_key):
-    url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&units=%s&exclude=hourly&appid=%s" % (
+    url = "https://api.openweathermap.org/data/3.0/onecall?lat=%s&lon=%s&units=%s&exclude=hourly,minutely&appid=%s" % (
     lat, lon, units, api_key)
     res = requests.get(url)
     if res.status_code == 200:
