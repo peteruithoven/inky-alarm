@@ -6,7 +6,8 @@
     "start": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "icons": "real-favicon generate faviconDescription.json faviconData.json icons && real-favicon inject faviconData.json . index.html"
+    "icons": "real-favicon generate faviconDescription.json faviconData.json icons && real-favicon inject faviconData.json . index.html",
+    "server": "node server/server.js"
   },
   "dependencies": {
     "@bevry/jsonfile": "^1.1.0",
