@@ -9,7 +9,7 @@ User=pi
 WorkingDirectory=/home/pi/inky-alarm/time
 LimitNOFILE=8192
 PIDFile=/var/run/time/time.pid
-ExecStart=python3 time.py
+ExecStart=/home/pi/inky-alarm/.venv/bin/python time.py
 RemainAfterExit=true
 
 [Install]
