@@ -12,6 +12,7 @@ font-fredoka-one = "^0.0.4"
 inky = "^2.0.0"
 requests = "^2.32.3"
 python-dotenv = "^1.0.1"
+adafruit-circuitpython-ht16k33 = "^4.6.10"
 
 
 [build-system]
