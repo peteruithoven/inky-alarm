@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import express from "express";
 import { readJSON, writeJSON } from "@bevry/jsonfile";
 import os from "os";
