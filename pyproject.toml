@@ -5,15 +5,16 @@ description = ""
 authors = ["peteruithoven <peter@peteruithoven.nl>"]
 license = "MIT"
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
-font-fredoka-one = "^0.0.4"
-inky = "^2.0.0"
-requests = "^2.32.3"
-python-dotenv = "^1.0.1"
+#font-fredoka-one = "^0.0.4"
+#inky = "^2.0.0"
+#requests = "^2.32.3"
+#python-dotenv = "^1.0.1"
 adafruit-circuitpython-ht16k33 = "^4.6.10"
-
+rpi-gpio = "^0.7.1"
 
 [build-system]
 requires = ["poetry-core"]
