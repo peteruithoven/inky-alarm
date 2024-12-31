@@ -6,9 +6,9 @@ DIY Pi Zero alarm with Inky pHat
 ### Crontab
 ```
 $ crontab -e
-*/30 * * * * python3 /home/pi/inky-alarm/display/display.py
-* * * * * python3 /home/pi/inky-alarm/alarm/alarm.py
-* * * * * python3 /home/pi/inky-alarm/time/time.py
+*/30 * * * * /home/pi/inky-alarm/.venv/bin/python /home/pi/inky-alarm/display/display.py
+* * * * * /home/pi/inky-alarm/.venv/bin/python /home/pi/inky-alarm/alarm/alarm.py
+* * * * * /home/pi/inky-alarm/.venv/bin/python /home/pi/inky-alarm/time/time.py
 */5 * * * * /usr/local/bin/WiFi_Check >> ~/WiFi_Check.log
 ```
 
