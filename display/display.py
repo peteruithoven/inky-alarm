@@ -77,7 +77,8 @@ padding_y = 4
 now = datetime.now()
 now_weekday_name = WEEKDAY_NAMES[now.weekday()]
 datetime_str = f"{now_weekday_name} {now.strftime('%-d %b')}"
-datetime_w, datetime_h = bottom_bar_font.getsize(datetime_str)
+datetime_left, datetime_top, datetime_right, datetime_bottom = bottom_bar_font.getbbox(datetime_str)
+datetime_h = datetime_bottom - datetime_top
 datetime_x = padding_x
 datetime_y = int(inky_display.height - datetime_h - padding_y)
 
@@ -85,7 +86,8 @@ alarm_datetime = get_next_alarm()
 alarm_weekday_name = WEEKDAY_NAMES[alarm_datetime.weekday()]
 alarm = f"{alarm_weekday_name} {alarm_datetime.strftime('%H:%M')}"
 
-alarm_w, alarm_h = bottom_bar_font.getsize(alarm)
+alarm_left, alarm_top, alarm_right, alarm_bottom = bottom_bar_font.getbbox(alarm)
+alarm_w = alarm_right - alarm_left
 alarm_x = inky_display.width - alarm_w - padding_x
 alarm_y = datetime_y
 
