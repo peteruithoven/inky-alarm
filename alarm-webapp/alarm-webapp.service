@@ -8,7 +8,7 @@ After=network.target
 User=pi
 WorkingDirectory=/home/pi/inky-alarm/alarm-webapp
 LimitNOFILE=8192
-PIDFile=/var/run/alarm-webapp/alarm-webapp.pid
+PIDFile=/run/alarm-webapp/alarm-webapp.pid
 Environment="NODE_ENV=production"
 ExecStart=/home/pi/.nvm/nvm-exec server/server.js
 Restart=on-failure
