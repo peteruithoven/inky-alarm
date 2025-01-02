@@ -9,7 +9,7 @@ User=pi
 WorkingDirectory=/home/pi/inky-alarm/display
 LimitNOFILE=8192
 PIDFile=/var/run/display/display.pid
-ExecStart=python3 display.py
+ExecStart=/home/pi/inky-alarm/.venv/bin/python display.py
 RemainAfterExit=true
 
 [Install]
