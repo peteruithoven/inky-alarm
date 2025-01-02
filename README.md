@@ -9,7 +9,7 @@ $ crontab -e
 */30 * * * * /home/pi/inky-alarm/.venv/bin/python /home/pi/inky-alarm/display/display.py
 * * * * * /home/pi/inky-alarm/.venv/bin/python /home/pi/inky-alarm/alarm/alarm.py
 * * * * * /home/pi/inky-alarm/.venv/bin/python /home/pi/inky-alarm/time/time.py
-*/5 * * * * /usr/local/bin/WiFi_Check >> ~/WiFi_Check.log
+*/5 * * * * /home/pi/inky-alarm/WiFi_Check >> ~/WiFi_Check.log
 ```
 
 Optionally, have it reboot every night, to overcome common wifi issues. 
